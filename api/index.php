@@ -79,7 +79,7 @@ $json = json_decode($json, true);
             title: "<?=$json['title']?>",
             description: "You're Watching:",
             image: "<?=$json['image']?>",
-            sources: [{"file": "https://cors.zimjs.com/<?=$episodeLink?>"}],
+            sources: [{"file": "https://web-production-e5d2.up.railway.app/<?=$episodeLink?>"}],
             autostart: false,
         }],
         advertising: {
