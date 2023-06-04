@@ -44,6 +44,15 @@ $json = json_decode($json, true);
         border-radius: 5px;
     }
 
+    .jw-flag-touch.jw-state-playing:not(.jw-breakpoint-1) .jw-display-icon-rewind{
+        display:flex;
+    }
+
+    .jw-svg-icon-rewind{
+        opacity: 0.7;
+        color:white;
+    }
+
     @media screen and (max-width:600px) {
         .wrap .btn {
             font-size: 08px;
@@ -111,33 +120,38 @@ $json = json_decode($json, true);
         const nextContainer = playerContainer.querySelector('.jw-display-icon-next');
         nextContainer.parentNode.insertBefore(forwardContainer, nextContainer);
 
+        forwardDisplayButton.addEventListener("click", function() {
+            player.seek((player.getPosition() + 10));
+        });
 
         // control bar icon
         playerContainer.querySelector('.jw-display-icon-next').style.display = 'none'; // hide next button
         const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
-        rewindControlBarButton.ariaLabel = "Backward 10 Seconds";
-        const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
-        forwardControlBarButton.style.transform = "scaleX(-1)";
-        forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
-        rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton
-            .nextElementSibling);
+        rewindControlBarButton.remove();
 
-        // add onclick handlers
-        [forwardDisplayButton, forwardControlBarButton].forEach(button => {
-            button.onclick = () => {
-                player.seek((player.getPosition() + 10));
-            }
-        })
+        // rewindControlBarButton.ariaLabel = "Backward 10 Seconds";
+        // const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
+        // forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
+        // rewindControlBarButton.style.display = "none";
+        // rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton
+        //     .nextElementSibling);
+
+        // // add onclick handlers
+        //  [forwardDisplayButton, forwardControlBarButton].forEach(button => {
+        //      button.onclick = () => {
+        //          player.seek((player.getPosition() + 10));
+        //      }
+        // })
+
         // New Features
         const fullScreenButton = document.getElementsByClassName("jw-icon jw-icon-inline jw-button-color jw-reset jw-icon-fullscreen");
         fullScreenButton[1].addEventListener("click", rotate);
-
     });
 
-        async function rotate(){
+        function rotate(){
             if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                 // true for mobile device
-                await screen.orientation.lock("landscape");
+                screen.orientation.lock("landscape");
             }
         }
      </script>
