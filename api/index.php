@@ -59,7 +59,7 @@ $json = json_decode($json, true);
         <div id="skipIntro"></div>
 
     </div>
-    <script src='player.js'></script>
+    <script src='https://raw.githubusercontent.com/Aijazmakerb/cors-anywhere/master/player.js'></script>
     <script>
         const playerInstance = jwplayer("player").setup({
         controls: true,
