@@ -54,11 +54,11 @@ $json = json_decode($json, true);
             font-size: 08px;
         }
     }
-    /* @media screen and (max-width:440px) {
+    @media screen and (max-width:440px) {
         .jw-title .jw-reset-text{
             display:none!important;
         }
-    } */
+    }
     </style>
 </head>
 <body>
