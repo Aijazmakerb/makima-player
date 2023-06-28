@@ -16,11 +16,10 @@ $json = json_decode($json, true);
 
 <head>
     <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-</head>
-<body>
     <style>
     .wrap #player {
         position: absolute;
@@ -55,13 +54,19 @@ $json = json_decode($json, true);
             font-size: 08px;
         }
     }
+    /* @media screen and (max-width:440px) {
+        .jw-title .jw-reset-text{
+            display:none!important;
+        }
+    } */
     </style>
+</head>
+<body>
     <div class="wrap">
-
         <div id="player"></div>
         <div id="skipIntro"></div>
-
     </div>
+
     <script>
         window.jwplayer = (function (t) {
     function e(e) {
