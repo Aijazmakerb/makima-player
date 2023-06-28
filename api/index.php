@@ -55,8 +55,14 @@ $json = json_decode($json, true);
         }
     }
     @media screen and (max-width:440px) {
-        .jw-title .jw-reset-text{
-            display:none!important;
+        .jw-title{
+            padding-top:5px!important;
+        }
+        .jwplayer.jw-skin-netflix.jw-breakpoint-2 .jw-title-primary, .jwplayer.jw-skin-netflix.jw-breakpoint-3 .jw-title-primary{
+            margin:3rem 0 0 0;
+        }
+        .jwplayer.jw-skin-netflix.jw-breakpoint-2 .jw-title-secondary, .jwplayer.jw-skin-netflix.jw-breakpoint-3 .jw-title-secondary{
+            margin:-5rem 0 0 0;
         }
     }
     </style>
