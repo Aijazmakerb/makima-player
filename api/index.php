@@ -16,7 +16,7 @@ $json = json_decode($json, true);
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
+    <link rel="stylesheet" href="./player.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -66,6 +66,8 @@ $json = json_decode($json, true);
         controls: true,
         displaytitle: true,
         displaydescription: true,
+        fullscreen: false,
+        allowFullscreen: false,
         abouttext: "AijaZ",
         aboutlink: "http://makimaa.infinityfreeapp.com/",
         autostart: false,
@@ -94,7 +96,7 @@ $json = json_decode($json, true);
             }]
         }
     })
-    
+
     playerInstance.on("ready", function() {
 
         // Move the timeslider in-line with other controls
@@ -141,8 +143,32 @@ $json = json_decode($json, true);
                 screen.orientation.lock("landscape");
             }
         });
-    });
+        // Find the JW Player element on your page
+        var playerElement = document.getElementById('player');
+        
+        playerElement.addEventListener('dblclick', function(){
+            player.setFullscreen(false);
+        })
 
+        // Double-tap gesture for skipping backward or forward
+        var lastTapTime = 0;
+        playerElement.addEventListener("click", function(event) {
+            var currentTime = new Date().getTime();
+            var tapTimeDiff = currentTime - lastTapTime;
+            if (tapTimeDiff <= 300) {
+                // Double-tap detected
+                var player = jwplayer("player");
+                if (event.clientX < window.innerWidth / 2) {
+                    // Tap on the left side (skip backward)
+                    player.seek(player.getPosition() - 10);
+                } else {
+                    // Tap on the right side (skip forward)
+                    player.seek(player.getPosition() + 10);
+                }
+            }
+            lastTapTime = currentTime;
+        });
+    });
      </script>
 </body>
 
