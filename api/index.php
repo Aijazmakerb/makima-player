@@ -16,7 +16,7 @@ $json = json_decode($json, true);
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./player.css">
+    <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
