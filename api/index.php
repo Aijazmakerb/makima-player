@@ -46,6 +46,9 @@ $json = json_decode($json, true);
     .jw-flag-touch .jw-slider-time::before, .jw-flag-touch .jw-horizontal-volume-container::before{
         height:0px;
     }
+    .jw-icon-rewind{
+        display:none;
+    }
 
     @media screen and (max-width:600px) {
         .wrap .btn {
@@ -7478,35 +7481,6 @@ $json = json_decode($json, true);
         const spacer = buttonContainer.querySelector(".jw-spacer");
         const timeSlider = playerContainer.querySelector(".jw-slider-time");
         buttonContainer.replaceChild(timeSlider, spacer);
-
-        const player = playerInstance;
-
-        // display icon
-        const rewindContainer = playerContainer.querySelector('.jw-display-icon-rewind');
-        const forwardContainer = rewindContainer.cloneNode(true);
-        const forwardDisplayButton = forwardContainer.querySelector('.jw-icon-rewind');
-        forwardDisplayButton.style.transform = "scaleX(-1)";
-        forwardDisplayButton.ariaLabel = "Forward 10 Seconds"
-        const nextContainer = playerContainer.querySelector('.jw-display-icon-next');
-        nextContainer.parentNode.insertBefore(forwardContainer, nextContainer);
-
-
-        // control bar icon
-        playerContainer.querySelector('.jw-display-icon-next').style.display = 'none'; // hide next button
-        const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
-        rewindControlBarButton.ariaLabel = "Backward 10 Seconds";
-        const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
-        forwardControlBarButton.style.transform = "scaleX(-1)";
-        forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
-        rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton
-            .nextElementSibling);
-
-        // add onclick handlers
-        [forwardDisplayButton, forwardControlBarButton].forEach(button => {
-            button.onclick = () => {
-                player.seek((player.getPosition() + 10));
-            }
-        })
 
         // New Features
         const fullScreenButton = document.getElementsByClassName("jw-icon jw-icon-inline jw-button-color jw-reset jw-icon-fullscreen");
