@@ -46,7 +46,7 @@ $json = json_decode($json, true);
         height:0px;
     }
     .jw-icon-rewind{
-        display:none;
+        display:none!important;
     }
 
     @media screen and (max-width:600px) {
@@ -56,7 +56,7 @@ $json = json_decode($json, true);
     }
     @media screen and (max-width:440px) {
         .jw-title{
-            padding-top:5px!important;
+            padding-top:15px!important;
         }
         .jwplayer.jw-skin-netflix.jw-breakpoint-2 .jw-title-primary, .jwplayer.jw-skin-netflix.jw-breakpoint-3 .jw-title-primary{
             margin:3rem 0 0 0;
