@@ -16,7 +16,7 @@ $json = json_decode($json, true);
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./player.css">
+    <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
@@ -62,8 +62,7 @@ $json = json_decode($json, true);
     </div>
     <script src='https://player.anikatsu.me/jw.js?v=0.0002'></script>
     <script>
-        var playerSetup = jwplayer('player');
-        playerSetup.setup({
+        const playerInstance = jwplayer("player").setup({
         controls: true,
         displaytitle: true,
         displaydescription: true,
@@ -98,23 +97,16 @@ $json = json_decode($json, true);
         }
     })
 
-    playerSetup.setConfig({
-        fullscreen: {
-          enableDoubleClick: false,
-          enableAndroidHLS: false
-        }
-      });
-
-    playerSetup.on("ready", function() {
+    playerInstance.on("ready", function() {
 
         // Move the timeslider in-line with other controls
-        const playerContainer = playerSetup.getContainer();
+        const playerContainer = playerInstance.getContainer();
         const buttonContainer = playerContainer.querySelector(".jw-button-container");
         const spacer = buttonContainer.querySelector(".jw-spacer");
         const timeSlider = playerContainer.querySelector(".jw-slider-time");
         buttonContainer.replaceChild(timeSlider, spacer);
 
-        const player = playerSetup;
+        const player = playerInstance;
 
         // display icon
         const rewindContainer = playerContainer.querySelector('.jw-display-icon-rewind');
@@ -153,10 +145,6 @@ $json = json_decode($json, true);
         });
         // Find the JW Player element on your page
         var playerElement = document.getElementById('player');
-        
-        playerElement.addEventListener('dblclick', function(){
-            player.setFullscreen(false);
-        })
 
         // Double-tap gesture for skipping backward or forward
         var lastTapTime = 0;
