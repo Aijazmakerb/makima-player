@@ -19,14 +19,6 @@ $json = json_decode($json, true);
     <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <script>
-      function preventFullscreenDoubleClick(event) {
-        // Prevent double-click event from triggering fullscreen mode
-        if (event.detail === 2) {
-          event.preventDefault();
-        }
-      }
-    </script>
 </head>
 <body>
     <style>
@@ -67,7 +59,7 @@ $json = json_decode($json, true);
         <div id="skipIntro"></div>
 
     </div>
-    <script src='./player.js'></script>
+    <script src='player.js'></script>
     <script>
         const playerInstance = jwplayer("player").setup({
         controls: true,
