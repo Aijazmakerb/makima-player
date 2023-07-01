@@ -17,7 +17,7 @@ $json = json_decode($json, true);
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link rel="stylesheet" href="https://player.anikatsu.me/style.css">
+    <link rel="stylesheet" href="https://archive-pi.vercel.app/style.css">
     <meta name="robots" content="noindex, nofollow" />
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <style>
@@ -44,9 +44,6 @@ $json = json_decode($json, true);
 
     .jw-flag-touch .jw-slider-time::before, .jw-flag-touch .jw-horizontal-volume-container::before{
         height:0px;
-    }
-    .jw-icon-rewind{
-        display:none!important;
     }
 
     @media screen and (max-width:600px) {
@@ -117,6 +114,34 @@ $json = json_decode($json, true);
         const spacer = buttonContainer.querySelector(".jw-spacer");
         const timeSlider = playerContainer.querySelector(".jw-slider-time");
         buttonContainer.replaceChild(timeSlider, spacer);
+
+        // display icon
+        const rewindContainer = playerContainer.querySelector('.jw-display-icon-rewind');
+        const forwardContainer = rewindContainer.cloneNode(true);
+        const forwardDisplayButton = forwardContainer.querySelector('.jw-icon-rewind');
+        forwardDisplayButton.style.transform = "scaleX(-1)";
+        forwardDisplayButton.ariaLabel = "Forward 10 Seconds"
+        const nextContainer = playerContainer.querySelector('.jw-display-icon-next');
+        nextContainer.parentNode.insertBefore(forwardContainer, nextContainer);
+
+        const player = playerInstance;
+
+        // control bar icon
+        playerContainer.querySelector('.jw-display-icon-next').style.display = 'none'; // hide next button
+        const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
+        rewindControlBarButton.ariaLabel = "Backward 10 Seconds";
+        const forwardControlBarButton = rewindControlBarButton.cloneNode(true);
+        forwardControlBarButton.style.transform = "scaleX(-1)";
+        forwardControlBarButton.ariaLabel = "Forward 10 Seconds";
+        rewindControlBarButton.parentNode.insertBefore(forwardControlBarButton, rewindControlBarButton
+            .nextElementSibling);
+
+        // add onclick handlers
+        [forwardDisplayButton, forwardControlBarButton].forEach(button => {
+            button.onclick = () => {
+                player.seek((player.getPosition() + 10));
+            }
+        })
 
         // New Features
         const fullScreenButton = document.getElementsByClassName("jw-icon jw-icon-inline jw-button-color jw-reset jw-icon-fullscreen");
