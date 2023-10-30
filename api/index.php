@@ -1,15 +1,18 @@
 <?php
 $api = "https://makima-api.vercel.app";
 
-$id=$_GET["id"];
+$anime = $_GET["anime"];
+$episode = $_GET["ep"];
 
-$episodeLink = file_get_contents("$api/download/$id");
+$episodes = file_get_contents("$api/meta/anilist/episodes/$anime");
+$episodes = json_decode($episodes, true);
+
+$episodeDetails = $episodes[$episode-1];
+$episodeID = $episodeDetails["id"];
+
+$episodeLink = file_get_contents("$api/meta/anilist/watch/$episodeID");
 $episodeLink = json_decode($episodeLink, true);
-
-$episodeLink = $episodeLink['sources_bk'][0]['file'];
-
-$json = file_get_contents("$api/playerDetails/$id"); 
-$json = json_decode($json, true);
+$episodeLink = $episodeLink['sources'][4]['url'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,10 +94,10 @@ $json = json_decode($json, true);
         },
         
         playlist: [{
-            title: "<?=$json['title']?>",
+            title: "<?=$episodeDetails['title']?>",
             description: "You're Watching:",
-            image: "<?=$json['image']?>",
-            sources: [{"file": "https://cors.zimjs.com/<?=$episodeLink?>"}],
+            image: "<?=$episodeDetails['image']?>",
+            sources: [{"file": "https://cors.moopa.live/<?=$episodeLink?>"}],
             autostart: false,
         }],
         advertising: {
