@@ -94,7 +94,7 @@ $episodeLink = $episodeLink['sources'][4]['url'];
         },
         
         playlist: [{
-            title: "<?php echo isset($episodeDetails['title']) ? $episodeDetails['title'] : str_replace("-"," ", $animeID);",
+            title: "<?=$episodeDetails['title']?>",
             description: "You're Watching:",
             image: "<?=$episodeDetails['image']?>",
             sources: [{"file": "https://cors.moopa.live/<?=$episodeLink?>"}],
